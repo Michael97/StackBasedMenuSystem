@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3310750126096347849}
   - component: {fileID: 6005276379113298133}
-  - component: {fileID: 1634979925924208081}
   m_Layer: 0
   m_Name: SingleSceneMenuInitialiser
   m_TagString: Untagged
@@ -49,15 +48,3 @@ MonoBehaviour:
   mainMenuPrefab: {fileID: 2193280095424707977, guid: 488a9da18c397f341ad7b7793e6bd0a5, type: 3}
   optionsMenuPrefab: {fileID: 2392388126053433381, guid: 6c0bb499b2d96754bb61a66b19d74ff7, type: 3}
   pauseMenuPrefab: {fileID: 5975046908167288936, guid: d71993cd9bba99344bebad3602d35943, type: 3}
---- !u!114 &1634979925924208081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490611132520976825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d86fd12ef208364d93e58a4dcc0585f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

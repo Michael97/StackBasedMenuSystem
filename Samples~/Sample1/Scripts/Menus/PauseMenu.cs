@@ -17,11 +17,11 @@ public class PauseMenu : SimpleMenu<PauseMenu>
     public void OnClickExit()
     {
         if (Close())
-            GameManager.Instance.LoadMenu();
+            MenuStack_GameManager.Instance.LoadMenu();
     }
 
     public override void OnBackPressed()
     {
-        GameManager.Instance.TogglePause();
+        MenuStack_GameManager.Instance.TogglePause();
     }
 }
