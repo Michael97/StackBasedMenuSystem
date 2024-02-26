@@ -1,13 +1,15 @@
+using StackBasedMenuSystem;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+//using StackBasedMenuSystem;
 
 
-public class GameManager : MonoBehaviour
+public class MenuStack_GameManagerTemplate : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static MenuStack_GameManagerTemplate Instance { get; private set; }
 
-    public GameObject MasterInputHandler;
+    public MasterInputHandler MasterInputHandler;
 
     public bool IsGamePaused { get; private set; }
 
@@ -15,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public enum GameType
     {
-        SingleScene, 
+        SingleScene,
         MultiScene
     }
 
@@ -70,13 +72,13 @@ public class GameManager : MonoBehaviour
     public void TogglePause()
     {
         // Toggle the pause state based on the current state and the success of the operation.
-        if (!IsGamePaused)
+        /*if (!IsGamePaused)
         {
             // If successfully showed the pause menu, pause the game.
             if (PauseMenu.Show())
             {
                 //Time.timeScale = 0f;
-                IsGamePaused = true; 
+                IsGamePaused = true;
             }
         }
         else
@@ -87,6 +89,6 @@ public class GameManager : MonoBehaviour
                 //Time.timeScale = 1f;
                 IsGamePaused = false;
             }
-        }
+        }*/
     }
 }

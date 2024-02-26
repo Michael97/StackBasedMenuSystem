@@ -1,4 +1,4 @@
-namespace StackBasedMenuSystem
+﻿namespace StackBasedMenuSystem
 {
     public class MenuManager : BaseMenuManager
     {
