@@ -11,7 +11,7 @@ namespace StackBasedMenuSystem
         // Dictionary to store menu prefabs
         protected Dictionary<System.Type, BaseMenu> menuPrefabs = new Dictionary<System.Type, BaseMenu>();
 
-        [SerializeField] private BaseMenuInitialiser Initialiser;
+        [SerializeField] public BaseMenuInitialiser Initialiser;
 
         protected virtual void Initialise()
         {

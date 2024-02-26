@@ -1,6 +1,6 @@
 using StackBasedMenuSystem;
 
-public class MenuInputHandler : BaseMenuInputHandler
+public class MenuInputHandlerTemplate : BaseMenuInputHandler
 {
     protected override void SubscribeToInputActions()
     {
@@ -16,13 +16,13 @@ public class MenuInputHandler : BaseMenuInputHandler
     private void EscapePressed()
     {
         //If we are in game we probably wanna pause the game
-        if (GameManager.Instance.InGame)
+        if (MenuStack_GameManagerTemplate.Instance.InGame)
         {
             var menuStack = MenuManager.Instance.GetMenuStack();
             // Toggle pause if no menus are open or the top menu is the pause menu
             if (menuStack.Count == 0 || menuStack.Peek().GetMenuType() == BaseMenu.MenuType.Pause)
             {
-                GameManager.Instance.TogglePause();
+                MenuStack_GameManagerTemplate.Instance.TogglePause();
             }
             //If we get here, it means we are in game and we have a menu open on top of the pause menu, so we close it
             else
