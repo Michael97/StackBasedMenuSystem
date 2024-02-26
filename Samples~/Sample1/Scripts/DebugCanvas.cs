@@ -2,8 +2,9 @@ using TMPro;
 using UnityEngine;
 using StackBasedMenuSystem;
 
-public class DebugCanvas : BaseDebugCanvas
+public class DebugCanvas : MonoBehaviour
 {
+    public TextMeshProUGUI stackInfo;
     public TextMeshProUGUI pausedInfo;
     public TextMeshProUGUI gameStatusInfo;
 
@@ -30,7 +31,17 @@ public class DebugCanvas : BaseDebugCanvas
         {
             stackInfo.text += menu.name + " - " + IsMenuActive(menu) + " - " + GetMenuCloseType(menu) + "\n";
         }
-        //pausedInfo.text = GameManager.Instance.IsGamePaused ? "Game Paused" : "Game Running";
-        //gameStatusInfo.text = GameManager.Instance.InGame ? "In Game" : "In Main Menu";
+        pausedInfo.text = GameManager.Instance.IsGamePaused ? "Game Paused" : "Game Running";
+        gameStatusInfo.text = GameManager.Instance.InGame ? "In Game" : "In Main Menu";
+    }
+
+    private string IsMenuActive(BaseMenu menu)
+    {
+        return menu.gameObject.activeSelf ? "Active" : "Inactive";
+    }
+
+    private string GetMenuCloseType(BaseMenu menu)
+    {
+        return menu.GetCloseType().ToString();
     }
 }

@@ -18,7 +18,7 @@ public class MainMenu : SimpleMenu<MainMenu>
     public void OnClickPlay()
     {
         if (Close())
-            MenuStack_GameManager.Instance.StartGame();
+            GameManager.Instance.StartGame();
     }
 
 }
