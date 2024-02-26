@@ -1,0 +1,47 @@
+using TMPro;
+using UnityEngine;
+using StackBasedMenuSystem;
+
+public class DebugCanvas : MonoBehaviour
+{
+    public TextMeshProUGUI stackInfo;
+    public TextMeshProUGUI pausedInfo;
+    public TextMeshProUGUI gameStatusInfo;
+
+    private DebugCanvas Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        var menuStack = MenuManager.Instance?.GetMenuStack();
+
+        if (menuStack == null)
+            return;
+
+        stackInfo.text = "Menu Stack Count: " + menuStack.Count;
+        stackInfo.text += "\n";
+
+        foreach (var menu in menuStack)
+        {
+            stackInfo.text += menu.name + " - " + IsMenuActive(menu) + " - " + GetMenuCloseType(menu) + "\n";
+        }
+        pausedInfo.text = GameManager.Instance.IsGamePaused ? "Game Paused" : "Game Running";
+        gameStatusInfo.text = GameManager.Instance.InGame ? "In Game" : "In Main Menu";
+    }
+
+    private string IsMenuActive(BaseMenu menu)
+    {
+        return menu.gameObject.activeSelf ? "Active" : "Inactive";
+    }
+
+    private string GetMenuCloseType(BaseMenu menu)
+    {
+        return menu.GetCloseType().ToString();
+    }
+}

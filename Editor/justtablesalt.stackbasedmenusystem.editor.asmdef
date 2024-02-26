@@ -1,0 +1,16 @@
+{
+    "name": "justtablesalt.stackbasedmenusystem.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:127a95e19850d2c43831d4d67d9c3642"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,23 @@
+{
+  "name": "com.justtablesalt.stackbasedmenusystem",
+  "version": "1.0.0",
+  "displayName": "Stack Based Menu System",
+  "description": "This Unity package streamlines UI development by incorporating advanced menu systems and input handling, leveraging Unity's Input System and TextMeshPro for enhanced user interfaces. Designed for ease of integration and flexibility across various game states and scenes.",
+  "documentationUrl": "https://github.com/Michael97/StackBasedMenuSystem/blob/main/README.md",
+  "unity": "2021.3",
+  "dependencies": {
+    "com.unity.inputsystem": "1.7.0",
+    "com.unity.textmeshpro": "3.0.8"
+  },
+  "samples": [
+    {
+        "displayName": "Sample1",
+        "description": "Example project on how to utilise the stack based menu system",
+        "path": "Samples~/Sample1"
+    }
+],
+  "author": {
+    "name": "Michael Thomas",
+    "url": "https://www.michaeljthomas.co.uk/"
+  }
+}
