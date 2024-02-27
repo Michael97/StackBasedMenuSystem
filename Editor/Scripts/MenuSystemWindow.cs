@@ -22,7 +22,7 @@ namespace StackBasedMenuSystem.Editor
         private bool quickCreation = false;
 
 
-        [MenuItem("Tools/MenuStackSystem/Menu System")]
+        [MenuItem("Tools/MenuStackSystem/Menu Creation")]
         public static void ShowWindow()
         {
             var window = GetWindow<MenuSystemWindow>("Menu System");
