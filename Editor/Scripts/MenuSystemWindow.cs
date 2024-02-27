@@ -84,14 +84,14 @@ namespace StackBasedMenuSystem.Editor
                 }
                 EditorGUILayout.EndHorizontal();
             }
-            if (GUILayout.Button("Add Button Name"))
+            if (GUILayout.Button("Add Button Name") && !EditorApplication.isCompiling)
             {
                 buttonNames.Add("");
             }
 
             GUILayout.Space(20); // Spacer
 
-            if (GUILayout.Button("Generate Script"))
+            if (GUILayout.Button("Generate Script") && !EditorApplication.isCompiling)
             {
                 DestroyImmediate(canvas);
                 canvas = null;
@@ -112,7 +112,7 @@ namespace StackBasedMenuSystem.Editor
 
             }
 
-            if (GUILayout.Button("Create and Save Prefab"))
+            if (GUILayout.Button("Create and Save Prefab") && !EditorApplication.isCompiling)
             {
                 CreatePrefab(menuName, canvas);
 
@@ -191,8 +191,6 @@ namespace StackBasedMenuSystem.Editor
 
             if (updateMenuInitialiser)
                 UpdateMenuInitialiserScript(menuName);
-
-            Debug.Log("Saved prefab successfully.");
         }
 
         void UpdateMenuInitialiserScript(string menuName)
