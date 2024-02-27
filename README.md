@@ -38,7 +38,9 @@ Access the setup menu via `Tools > MenuStackSystem > Setup`.
 
 1. **Generate Scripts**: Click this button to generate necessary scripts.
 2. **Generate Prefabs**: Click this button to create prefabs.
-3. **Add Sample Scenes to Build**: Click this if you have imported samples to include them in the build settings.
+3. **Fix References**: Click this **after** you have created a menu via the menu creation window.
+4. **Add Sample Scenes to Build**: Click this if you have imported samples to include them in the build settings.
+5. **Purge**: Clicking this will delete all files and folders under Prefabs/MenuStackSystem and Scripts/MenuStackSystem
 
 ### Menu Creation via GUI
 
