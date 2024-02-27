@@ -62,21 +62,23 @@ Remember to update your references within the `MenuInitialiser` prefab.
 
 - **Quick Creation**: Setting this to False disables dialog boxes that normally appear during menu creation.
 
-### Required Components in the Scene
+### 🔧 Scene Configuration Guide
 
-#### MenuManager
+This guide outlines the essential components required in your Unity scene for an efficient menu management system. Follow these steps to ensure your game's menu system is robust and seamlessly integrated.
+
+#### 1. MenuManager
 The `MenuManager` acts as the central hub for managing all menu interactions. It is crucial for orchestrating the display, hiding, and switching of menus within the game.
 
 - How to Add: Head to `Assets/Prefabs/MenuStackSystem/MenuManager.prefab` and drag the prefab into the scene
 - Configuration: Ensure the MenuManager is referencing your `MenuInitialiser.cs`
 
-#### MenuStack_GameManager
+#### 2. MenuStack_GameManager
 The `MenuStack_GameManager` is a template of how to struture your game manager with the menu system. Feel free to expand or replace this as you see fit.
 
 - How to Add: Head to `Assets/Prefabs/MenuStackSystem/MenuStack_GameManager.prefab` and drag the prefab into the scene
 - Configuration: Ensure the MenuStack_GameManager is referencing your `MasterInputHandler.cs`
 
-#### EventSystem
+#### 3. EventSystem
 The Unity EventSystem is required for handling input events on UI elements. If your scene does not already include an EventSystem, you will need to add one.
 
 - How to Add: Right-click in the Hierarchy pane, navigate to `MenuSystem -> Event System`, and click to add it to your scene.
@@ -98,11 +100,14 @@ Replace `YourStartingMenu` with the class name of the menu you wish to display i
 
 ### Best Practices
 
-1. Do not create a menu unless you have clicked `Generate Scripts` and `Generate Prefabs` in the Setup Window.
-2. Do create menus via the Menu Creation GUI, and tick `Add to Menu Initialiser`. This will ensure a smooth experience.
-3. Do click `Fix References` after menu creation.
-4. If there are errors, do try regenerating the scripts and prefabs via the Setup Window.
-
+- **Do**:
+  - Use the Menu Creation GUI for creating menus, ensuring to select Add to `Menu Initialiser for integration`.
+  - Click Fix References after creating menus for `consistent references`.
+- **Do Not**:
+  - Avoid creating menus manually without using `Generate Scripts` and `Generate Prefabs` in the Setup Window beforehand.
+- **Troubleshooting**:
+  - If encountering errors, attempt to regenerate scripts and prefabs through the Setup Window.
+    
 ## :bookmark_tabs: System Components
 
 ### Creating a Menu
