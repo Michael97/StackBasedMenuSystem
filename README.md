@@ -36,9 +36,9 @@ Access the setup menu via `Tools > MenuStackSystem > Setup`.
 
 ![Setup](Editor/Resources/Setup.PNG)
 
-1. **Generate Scripts**: Click this button to generate necessary scripts.
-2. **Generate Prefabs**: Click this button to create prefabs.
-3. **Fix References**: Click this **after** you have created a menu via the menu creation window.
+1. **Generate Scripts**: Click this button to generate necessary scripts. The scripts created will appear under Scripts/MenuStackSystem
+2. **Generate Prefabs**: Click this button to create prefabs. The prefabs created will appear under Prefabs/MenuStackSystem 
+3. **Fix References**: Click this **after** you have created a menu via the menu creation window. It will update MenuInitialiser.cs references with the new Menu created. 
 4. **Add Sample Scenes to Build**: Click this if you have imported samples to include them in the build settings.
 5. **Purge**: Clicking this will delete all files and folders under Prefabs/MenuStackSystem and Scripts/MenuStackSystem
 
@@ -48,11 +48,11 @@ Open the menu creation tool via `Tools > MenuStackSystem > MenuCreation`.
 
 ![MenuCreation](Editor/Resources/MenuCreation.PNG)
 
-- **Menu Name**: Enter a name here. This name will be used as both the new class name and the GameObject name.
+- **Menu Name**: Enter a name here. This name will be used as both the new class name and the GameObject name. E.g, Input = PauseMenu, Output = PauseMenu
 - **Add to Menu Initialiser**: If set to True, this option updates the `MenuInitialiser.cs` script with the newly created menu.
 - **Close Type**: Defines how the GameObject will be closed (Options: Destroy, Hide, Disabled).
 - **Menu Type**: Sets the type of the menu. Configuring this correctly is crucial for the menu's intended behavior.
-- **Add Button Name**: Clicking this button prompts an input field where you can specify a name. A button with this name will be created, including a corresponding function within the menu script. The script will automatically link the button to the function via a listener.
+- **Add Button Name**: Clicking this button prompts an input field where you can specify a name. A button with this name will be created, including a corresponding function within the menu script. The script will automatically link the button to the function via a listener. E.g, Input = ExitButton, Output = ExitButton
 - **Generate Script**: Generates the menu script and saves it to `Assets/Scripts/Menus`.
 - **Create and Save Prefab**: Generates a menu prefab, attaches the generated script, and saves it to `Assets/Prefabs/Menus`.
 
@@ -95,6 +95,13 @@ protected override void InitialMenuShow()
 }
 ```
 Replace `YourStartingMenu` with the class name of the menu you wish to display initially.
+
+### Best Practices
+
+1. Do not create a menu unless you have clicked `Generate Scripts` and `Generate Prefabs` in the Setup Window.
+2. Do create menus via the Menu Creation GUI, and tick `Add to Menu Initialiser`. This will ensure a smooth experience.
+3. Do click `Fix References` after menu creation.
+4. If there are errors, do try regenerating the scripts and prefabs via the Setup Window.
 
 ## :bookmark_tabs: System Components
 
