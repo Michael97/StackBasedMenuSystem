@@ -36,11 +36,11 @@ Access the setup menu via `Tools > MenuStackSystem > Setup`.
 
 ![Setup](Editor/Resources/Setup.PNG)
 
-1. **Generate Scripts**: Click this button to generate necessary scripts. The scripts created will appear under Scripts/MenuStackSystem
-2. **Generate Prefabs**: Click this button to create prefabs. The prefabs created will appear under Prefabs/MenuStackSystem 
-3. **Fix References**: Click this **after** you have created a menu via the menu creation window. It will update MenuInitialiser.cs references with the new Menu created. 
+1. **Generate Scripts**: Click this button to generate necessary scripts. The scripts created will appear under `Scripts/MenuStackSystem`. Take care when using this as it will override any existing prefabs with the same name, this should only be used to setup the project.
+2. **Generate Prefabs**: Click this button to create prefabs. The prefabs created will appear under `Prefabs/MenuStackSystem`. Take care when using this as it will override any existing prefabs with the same name, this should only be used to setup the project.
+3. **Fix References**: Click this **after** you have created a menu via the menu creation window. It will update `MenuInitialiser.prefab` references with all menus under `Prefabs/MenuStackSystem/Menus`. 
 4. **Add Sample Scenes to Build**: Click this if you have imported samples to include them in the build settings.
-5. **Purge**: Clicking this will delete all files and folders under Prefabs/MenuStackSystem and Scripts/MenuStackSystem
+5. **Purge**: Clicking this will delete all files and folders under Prefabs/MenuStackSystem and Scripts/MenuStackSystem.
 
 ### Menu Creation via GUI
 
@@ -101,16 +101,16 @@ Replace `YourStartingMenu` with the class name of the menu you wish to display i
 ### Best Practices
 
 - **Do**:
-  - Use the Menu Creation GUI for creating menus, ensuring to select Add to `Menu Initialiser for integration`.
-  - Click Fix References after creating menus for `consistent references`.
+  - Use the Menu Creation GUI for creating menus, ensuring to select Add to `Menu Initialiser for integration`. This will ensure that you have added the newly created menu to the `MenuInitaliser.cs` class.
+  - Click Fix References after creating menus for `consistent references`. This will iterate through all menus under `Assets/Scripts/MenuStackSystem/Menus` and link them to the references within `MenuInitaliser.prefab`.
 - **Do Not**:
-  - Avoid creating menus manually without using `Generate Scripts` and `Generate Prefabs` in the Setup Window beforehand.
+  - Avoid creating menus manually without using `Generate Scripts` and `Generate Prefabs` in the Setup Window beforehand. 
 - **Troubleshooting**:
   - If encountering errors, attempt to regenerate scripts and prefabs through the Setup Window.
     
 ## :bookmark_tabs: System Components
 
-### Creating a Menu
+### **Creating a Menu**
 
 This guide walks you through creating a menu in Unity using the StackBasedMenuSystem. We'll create a `MainMenu` class as an example.
 
@@ -160,85 +160,128 @@ This setup allows you to create a menu system where each menu is a class derived
 Make sure to adjust the class and method names according to your project's specific requirements.
 
 
-### Making an Input Handler
-- **Definition**: Input Handlers process user inputs for menus.
-- **Implementation**: Guide to creating input handlers using the Unity Input System.
-```csharp
-using StackBasedMenuSystem;
+### **Creating an Input Handler**
 
-public class MenuInputHandler : BaseMenuInputHandler
-{
+Input Handlers are crucial for processing user inputs within menus, especially when integrating with the Unity Input System. This guide provides a structured approach to creating an input handler that responds to user actions, such as pressing a back button or handling pause functionality.
+
+#### **Overview**
+
+- **Definition**: Input Handlers manage the input events for menu navigation and interaction.
+- **Implementation**: This section outlines how to implement an input handler using the Unity Input System, focusing on handling escape or back actions.
+
+#### **Step-by-Step Implementation**
+
+1. **Create the Input Handler Class**: Start by creating a new C# script named `MenuInputHandler`. This class should inherit from `BaseMenuInputHandler` to leverage base functionalities.
+
+    ```csharp
+    using StackBasedMenuSystem;
+
+    public class MenuInputHandler : BaseMenuInputHandler
+    {
+    }
+    ```
+
+2. **Subscribe to Input Actions**: Override the `SubscribeToInputActions` method to listen for specific input actions, such as pressing the escape key or back button on a controller.
+
+    ```csharp
     protected override void SubscribeToInputActions()
     {
         inputHandler.PlayerInputActions().UI.Cancel.performed += _ => EscapePressed();
     }
+    ```
 
+3. **Unsubscribe from Input Actions**: Ensure you properly unsubscribe from the input actions in the `UnsubscribeFromInputActions` method to prevent memory leaks or unintended behavior.
+
+    ```csharp
     protected override void UnsubscribeFromInputActions()
     {
         inputHandler.PlayerInputActions().UI.Cancel.performed -= _ => EscapePressed();
-
     }
+    ```
 
+4. **Implement the Escape Action**: Define what happens when the escape action is triggered. This could involve pausing the game, closing the current menu, or navigating back in the menu stack.
+
+    ```csharp
     private void EscapePressed()
     {
-        //If we are in game we probably wanna pause the game
         if (GameManager.Instance.InGame)
         {
             var menuStack = MenuManager.Instance.GetMenuStack();
-            // Toggle pause if no menus are open or the top menu is the pause menu
             if (menuStack.Count == 0 || menuStack.Peek().GetMenuType() == BaseMenu.MenuType.Pause)
             {
                 GameManager.Instance.TogglePause();
             }
-            //If we get here, it means we are in game and we have a menu open on top of the pause menu, so we close it
             else
             {
-                // Close the topmost non-pause menu
                 MenuManager.Instance.CloseMenu(menuStack.Peek());
             }
         }
-        //If we are in the main menu, just go back on the stack
         else
-            MenuManager.Instance.GoBackONMenuStack();
+        {
+            MenuManager.Instance.GoBackOnMenuStack();
+        }
     }
-}
+    ```
 
-```
+#### **Key Considerations**
 
-### Making a Menu Initialiser
-- **Purpose**: Initializes menus and input handlers when the game starts or when the scene changes.
-- **Configuration**: Configuring initial visible menus and input listeners.
+- **Handling Game States**: The input handler should consider different game states (e.g., in-game vs. main menu) to determine the appropriate response to input actions.
+- **Menu Stack Management**: Utilize the menu stack to manage menu visibility and navigation logically, ensuring a smooth user experience.
+- **Flexibility and Reusability**: Design your input handler to be flexible and reusable across different menus and game scenes.
 
-```csharp
-using UnityEngine;
-using StackBasedMenuSystem;
+By following these steps, you can effectively implement a responsive and intuitive input handling system for your game's menus, enhancing player interaction and navigation.
 
-[RequireComponent(typeof(MenuInputHandler))]
-public class MenuInitialiser : BaseMenuInitialiser
-{
-    //Start Prefab Menus
+
+### **Menu Initialiser**
+
+The `MenuInitialiser` class plays a pivotal role in setting up your game's menu system at the start or upon scene changes. It ensures that your menus and input handlers are ready to go, right from the get-go.
+
+#### **Purpose**
+
+- Initializes menus and input handlers as the game starts or during scene transitions.
+- Configures the initial visibility of menus and sets up input listeners for user interactions.
+
+#### **Configuration Steps**
+
+1. **Attach Required Component**: Ensure that `MenuInputHandler` is attached to the same GameObject as `MenuInitialiser` to handle input efficiently.
+
+    ```csharp
+    [RequireComponent(typeof(MenuInputHandler))]
+    ```
+
+2. **Define Menu Prefabs**: Specify which menu prefabs to include in your game. You can add these directly through the Unity Editor by marking the prefabs as `SerializeField`.
+
+    ```csharp
     [SerializeField] private WelcomeMenu welcomeMenuPrefab;
     [SerializeField] private MainMenu mainMenuPrefab;
     [SerializeField] private OptionsMenu optionsMenuPrefab;
     [SerializeField] private PauseMenu pauseMenuPrefab;
-    //End Prefab Menus
+    ```
 
+3. **Register Menus**: In the `RegisterMenus` method, register each menu prefab with the `MenuManager` to make them available for use. This step can be automated through the menu creation window by selecting "Add to Menu Initialiser".
+
+    ```csharp
     protected override void RegisterMenus()
     {
-        //Start Prefab Register
         MenuManager.Instance.RegisterMenuPrefab(welcomeMenuPrefab);
         MenuManager.Instance.RegisterMenuPrefab(mainMenuPrefab);
         MenuManager.Instance.RegisterMenuPrefab(optionsMenuPrefab);
         MenuManager.Instance.RegisterMenuPrefab(pauseMenuPrefab);
-        //End Prefab Register
     }
-    
+    ```
 
+4. **Initial Menu Display**: The `InitialMenuShow` method specifies which menu to display first when the scene loads. Customize this to set your starting menu.
+
+    ```csharp
     protected override void InitialMenuShow()
     {
-        WelcomeMenu.Show();
+        WelcomeMenu.Show(); // Replace WelcomeMenu with your starting menu class
     }
+    ```
 
+5. **Event Subscription**: Implement the `Subscribe` and `Unsubscribe` methods to manage event listeners for game start and menu load events. This ensures your menu system responds to game states appropriately.
+
+    ```csharp
     protected override void Subscribe()
     {
         GameManager.OnGameStart += HandleGameStart;
@@ -250,9 +293,16 @@ public class MenuInitialiser : BaseMenuInitialiser
         GameManager.OnGameStart -= HandleGameStart;
         GameManager.OnMenuLoad -= HandleMenuLoad;
     }
-}
+    ```
 
-```
+#### **Tips for Success**
+
+- **Automate Menu Registration**: Leverage the menu creation window's "Add to Menu Initialiser" feature to simplify the process of adding new menus.
+- **Dynamic First Menu**: Consider game state or player preferences when determining the initial menu, making your game more responsive to user needs.
+- **Stay Subscribed**: Ensure your `MenuInitialiser` is always subscribed to relevant game events to maintain a responsive and dynamic menu system.
+
+By following these steps and tips, you'll set up a robust and responsive menu system, enhancing the user experience from the moment your game starts.
+
 
 
 ## :memo: API Documentation
