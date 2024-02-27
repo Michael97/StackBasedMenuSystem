@@ -67,8 +67,14 @@ Remember to update your references within the `MenuInitialiser` prefab.
 #### MenuManager
 The `MenuManager` acts as the central hub for managing all menu interactions. It is crucial for orchestrating the display, hiding, and switching of menus within the game.
 
-- How to Add: Right click in the hierarchy `MenuSystem > MenuManager`
+- How to Add: Head to `Assets/Prefabs/MenuStackSystem/MenuManager.prefab` and drag the prefab into the scene
 - Configuration: Ensure the MenuManager is referencing your `MenuInitialiser.cs`
+
+#### MenuStack_GameManager
+The `MenuStack_GameManager` is a template of how to struture your game manager with the menu system. Feel free to expand or replace this as you see fit.
+
+- How to Add: Head to `Assets/Prefabs/MenuStackSystem/MenuStack_GameManager.prefab` and drag the prefab into the scene
+- Configuration: Ensure the MenuStack_GameManager is referencing your `MasterInputHandler.cs`
 
 #### EventSystem
 The Unity EventSystem is required for handling input events on UI elements. If your scene does not already include an EventSystem, you will need to add one.
