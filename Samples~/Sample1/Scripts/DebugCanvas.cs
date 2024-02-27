@@ -30,7 +30,7 @@ public class DebugCanvas : BaseDebugCanvas
         {
             stackInfo.text += menu.name + " - " + IsMenuActive(menu) + " - " + GetMenuCloseType(menu) + "\n";
         }
-        //pausedInfo.text = GameManager.Instance.IsGamePaused ? "Game Paused" : "Game Running";
-        //gameStatusInfo.text = GameManager.Instance.InGame ? "In Game" : "In Main Menu";
+        pausedInfo.text = MenuStack_GameManager.Instance.IsGamePaused ? "Game Paused" : "Game Running";
+        gameStatusInfo.text = MenuStack_GameManager.Instance.InGame ? "In Game" : "In Main Menu";
     }
 }

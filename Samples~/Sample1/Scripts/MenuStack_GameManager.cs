@@ -73,7 +73,7 @@ namespace StackBasedMenuSystem
         public void TogglePause()
         {
             // Toggle the pause state based on the current state and the success of the operation.
-            /*if (!IsGamePaused)
+            if (!IsGamePaused)
             {
                 // If successfully showed the pause menu, pause the game.
                 if (PauseMenu.Show())
@@ -90,7 +90,7 @@ namespace StackBasedMenuSystem
                     //Time.timeScale = 1f;
                     IsGamePaused = false;
                 }
-            }*/
+            }
         }
     }
 }
