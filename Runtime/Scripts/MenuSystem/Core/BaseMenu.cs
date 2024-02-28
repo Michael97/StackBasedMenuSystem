@@ -167,8 +167,6 @@ namespace StackBasedMenuSystem
             menuType = type;
         }
 
-        public bool IsPermanent = false; // If true, the menu will not be destroyed when attempting to close it (When it is the only menu in the stack).
-
         public abstract void OnBackPressed();
 
         public abstract void BindButtonActions();
