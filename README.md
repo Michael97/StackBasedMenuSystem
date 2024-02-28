@@ -108,7 +108,6 @@ Replace `YourStartingMenu` with the class name of the menu you wish to display i
 - **Troubleshooting**:
   - If encountering errors, attempt to regenerate scripts and prefabs through the Setup Window.
   - If the csproj files are not generating you will need to go to `Preferences -> External Tools` tick `Git Packages`, and then regenerate the project files.
-  - Avoid creating menus manually without using `Generate Scripts` and `Generate Prefabs` in the Setup Window beforehand. 
     
 ## :bookmark_tabs: System Components
 
