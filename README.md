@@ -104,9 +104,11 @@ Replace `YourStartingMenu` with the class name of the menu you wish to display i
   - Use the Menu Creation GUI for creating menus, ensuring to select Add to `Menu Initialiser for integration`. This will ensure that you have added the newly created menu to the `MenuInitaliser.cs` class.
   - Click Fix References after creating menus for `consistent references`. This will iterate through all menus under `Assets/Scripts/MenuStackSystem/Menus` and link them to the references within `MenuInitaliser.prefab`.
 - **Do Not**:
-  - Avoid creating menus manually without using `Generate Scripts` and `Generate Prefabs` in the Setup Window beforehand. 
+  - Create menus manually or through the Menu Creation window without using `Generate Scripts` and `Generate Prefabs` in the Setup Window beforehand. 
 - **Troubleshooting**:
   - If encountering errors, attempt to regenerate scripts and prefabs through the Setup Window.
+  - If the csproj files are not generating you will need to go to `Preferences -> External Tools` tick `Git Packages`, and then regenerate the project files.
+  - Avoid creating menus manually without using `Generate Scripts` and `Generate Prefabs` in the Setup Window beforehand. 
     
 ## :bookmark_tabs: System Components
 

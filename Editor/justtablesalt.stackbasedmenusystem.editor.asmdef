@@ -2,8 +2,8 @@
     "name": "justtablesalt.stackbasedmenusystem.editor",
     "rootNamespace": "",
     "references": [
-        "GUID:127a95e19850d2c43831d4d67d9c3642",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:127a95e19850d2c43831d4d67d9c3642"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
