@@ -13,7 +13,7 @@ namespace StackBasedMenuSystem.Editor
     {
         private Texture2D logo;
         private string menuName = "NewMenu";
-        private bool updateMenuInitialiser = false;
+        private bool updateMenuInitialiser = true;
         private BaseMenu.CloseType closeType = BaseMenu.CloseType.Destroy;
         private BaseMenu.MenuType menuType = BaseMenu.MenuType.Generic;
         private List<string> buttonNames = new List<string>(); // Store dynamic button names
@@ -25,7 +25,7 @@ namespace StackBasedMenuSystem.Editor
         [MenuItem("Tools/MenuStackSystem/Menu Creation")]
         public static void ShowWindow()
         {
-            var window = GetWindow<MenuSystemWindow>("Menu System");
+            var window = GetWindow<MenuSystemWindow>("Menu Creation");
             window.minSize = new Vector2(400, 550); // Set minimum size
 
         }
@@ -327,7 +327,7 @@ namespace StackBasedMenuSystem.Editor
             foreach (var buttonName in buttons)
             {
                 // Proper indentation for adding button listeners within the BindButtonActions method
-                buttonListeners += $"        FindButtonAndAddListener(\"{buttonName}Button\", OnClick{buttonName});\n";
+                buttonListeners += $"        FindButtonAndAddListener(\"{buttonName}\", OnClick{buttonName});\n";
 
                 // Properly indented button click handler methods
                 buttonFunctions += $@"    public void OnClick{buttonName}()
