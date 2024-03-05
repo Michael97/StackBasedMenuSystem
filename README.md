@@ -9,6 +9,15 @@ The stack-based menu system in Unity manages menus in a last-in, first-out (LIFO
 
 Enhancing this system, `BaseMenu.cs` introduces `CloseType` and `MenuType` enums, which allow each menu to exhibit specific behaviors upon closing (`Destroy`, `Hide`, `Disabled`) and to be identified by its function (`Generic`, `Main`, `Options`, etc.). These flags offer the flexibility to configure menus for various scenarios, ensuring they behave appropriately according to their role within the application, from preventing certain menus from closing under specific conditions to maintaining consistent behavior aligned with their designated purpose.
 
+### 🚀 Node Editor System: Coming Soon
+We're currently developing a Node-Based Version of our menu system to simplify menu creation with a more visual approach, reducing the need for extensive programming.
+
+#### Key Features:
+- Visual Design: Create and manage menus using a user-friendly, drag-and-drop interface.
+- Faster Prototyping: Quickly prototype menu flows without writing code.
+- Intuitive Logic: Easily set up navigation and logic visually.
+
+This update is aimed at making menu management more accessible and less time-consuming for developers of all skill levels. We're excited about the possibilities and welcome any feedback or ideas!
 
 ## :gear: Getting Started
 **Prerequisites:**
